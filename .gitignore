@@ -320,5 +320,12 @@ pip-selfcheck.json
 ### Allor ###
 config.json
 resources/timestamp.json
+node.zip
+
+### macOS ###
+.DS_Store
+
+### Claude Code ###
+.claude/
 
 # End of https://www.toptal.com/developers/gitignore/api/python,venv,visualstudiocode,pycharm
