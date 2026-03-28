@@ -23,10 +23,10 @@ license = {file = "LICENSE"}
 dependencies = ["rembg", "onnx", "Pillow", "opencv-python"]
 
 [project.urls]
-Repository = "https://github.com/pxl-pshr/ComfyUI-Allor"
+Repository = "https://github.com/pxl-pshr/ComfyUI-Allor-Fork"
 #  Used by Comfy Registry https://registry.comfy.org
-Documentation = "https://github.com/pxl-pshr/ComfyUI-Allor/wiki"
-"Bug Tracker" = "https://github.com/pxl-pshr/ComfyUI-Allor/issues"
+Documentation = "https://github.com/pxl-pshr/ComfyUI-Allor-Fork/wiki"
+"Bug Tracker" = "https://github.com/pxl-pshr/ComfyUI-Allor-Fork/issues"
 
 [tool.comfy]
 PublisherId = "pxlpshr"
