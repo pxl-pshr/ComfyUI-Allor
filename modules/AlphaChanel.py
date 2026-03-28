@@ -21,7 +21,7 @@ class AlphaChanelAdd:
         batch, height, width, channels = images.shape
 
         if channels == 4:
-            return images
+            return (images,)
 
         alpha = torch.ones((batch, height, width, 1))
 
@@ -132,7 +132,7 @@ class AlphaChanelRestore:
         batch, height, width, channels = images.shape
 
         if channels != 4:
-            return images
+            return (images,)
 
         tensor = images.clone().detach()
 

@@ -98,7 +98,7 @@ class ImageContainerInheritanceAdd:
     CATEGORY = "image/container"
 
     def node(self, images, add_width, add_height, red, green, blue, alpha, method):
-        width, height = images[0, :, :, 0].shape
+        height, width = images[0, :, :, 0].shape
 
         width = width + add_width
         height = height + add_height

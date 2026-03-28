@@ -101,6 +101,7 @@ class ImageNoiseBeta:
         else:
             noise = images + noise
 
+        noise = np.clip(noise, 0.0, 1.0)
         noise = noise.astype(images.dtype)
 
         return noise

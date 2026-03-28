@@ -1686,7 +1686,7 @@ class ImageDrawRectangleRoundedByContainer:
             SSAA,
             method
     ):
-        return ImageDrawRectangleRounded().image_draw_rounded(
+        return ImageDrawRectangleRounded().node(
             container[0, :, :, 0].shape[1],
             container[0, :, :, 0].shape[0],
             start_x,
