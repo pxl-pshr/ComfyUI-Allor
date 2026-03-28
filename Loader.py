@@ -338,8 +338,11 @@ class Loader:
             modules.update(ImageNoise.NODE_CLASS_MAPPINGS)
 
         if self.__config()["modules"]["ImageSegmentation"]:
-            from .modules import ImageSegmentation
-            modules.update(ImageSegmentation.NODE_CLASS_MAPPINGS)
+            try:
+                from .modules import ImageSegmentation
+                modules.update(ImageSegmentation.NODE_CLASS_MAPPINGS)
+            except ImportError:
+                self.__error("ImageSegmentation disabled: rembg not installed. Install with: pip install \"rembg[cpu]\"")
 
         if self.__config()["modules"]["ImageText"]:
             from .modules import ImageText

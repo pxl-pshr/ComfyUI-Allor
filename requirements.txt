@@ -1,7 +1,7 @@
 rembg
 onnx
 Pillow
-opencv-python
+opencv-python-headless
 
 # Optional for auto updates
 gitpython

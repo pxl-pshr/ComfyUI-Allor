@@ -20,7 +20,7 @@ license = {file = "LICENSE"}
 #     "Environment :: GPU :: Apple Metal",    # Apple Metal support
 # ]
 
-dependencies = ["rembg", "onnx", "Pillow", "opencv-python"]
+dependencies = ["rembg", "onnx", "Pillow", "opencv-python-headless"]
 
 [project.urls]
 Repository = "https://github.com/pxl-pshr/ComfyUI-Allor-Fork"
