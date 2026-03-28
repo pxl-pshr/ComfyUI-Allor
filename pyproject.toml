@@ -1,5 +1,5 @@
 [project]
-name = "allor"
+name = "comfyui-allor-fork"
 description = "A high-performance image processing node pack for ComfyUI with 90+ nodes for filters, transforms, compositing, drawing, segmentation, and more."
 version = "1.0.0"
 license = {file = "LICENSE"} 
@@ -30,7 +30,7 @@ Documentation = "https://github.com/pxl-pshr/ComfyUI-Allor-Fork/wiki"
 
 [tool.comfy]
 PublisherId = "pxlpshr"
-DisplayName = "ComfyUI-Allor"
+DisplayName = "ComfyUI-Allor-Fork"
 Icon = ""
 includes = [] 
 # "requires-comfyui" = ">=1.0.0"  # ComfyUI version compatibility
