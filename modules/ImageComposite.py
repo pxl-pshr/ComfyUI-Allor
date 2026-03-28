@@ -273,7 +273,7 @@ class ImageCompositeRelative:
             container_height = max(img_a_height, img_b_height)
         elif container_size_type == "sum_height":
             container_width = max(img_a_width, img_b_width)
-            container_height = img_a_height + img_a_height
+            container_height = img_a_height + img_b_height
         else:
             raise ValueError()
 

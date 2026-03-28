@@ -10,3 +10,4 @@ loader.setup_paths()
 loader.setup_override()
 
 NODE_CLASS_MAPPINGS = loader.get_modules()
+NODE_DISPLAY_NAME_MAPPINGS = {k: k for k in NODE_CLASS_MAPPINGS}

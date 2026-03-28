@@ -6,7 +6,11 @@ import time
 from pathlib import Path
 
 import folder_paths
-import nodes
+
+try:
+    import nodes
+except ImportError:
+    nodes = None
 
 
 class Loader:
@@ -262,26 +266,35 @@ class Loader:
     def setup_override(self):
         override_nodes_len = 0
 
+        if nodes is None or not hasattr(nodes, "NODE_CLASS_MAPPINGS"):
+            self.__error("Could not find NODE_CLASS_MAPPINGS in nodes module. Override skipped.")
+            return
+
         def override(function):
-            start_len = nodes.NODE_CLASS_MAPPINGS.__len__()
+            start_len = len(nodes.NODE_CLASS_MAPPINGS)
 
             nodes.NODE_CLASS_MAPPINGS = dict(
                 filter(function, nodes.NODE_CLASS_MAPPINGS.items())
             )
 
-            return start_len - nodes.NODE_CLASS_MAPPINGS.__len__()
+            return start_len - len(nodes.NODE_CLASS_MAPPINGS)
 
-        if self.__config()["override"]["postprocessing"]:
-            override_nodes_len += override(lambda item: not item[1].CATEGORY.startswith("image/postprocessing"))
+        try:
+            if self.__config()["override"]["postprocessing"]:
+                override_nodes_len += override(lambda item: not item[1].CATEGORY.startswith("image/postprocessing"))
 
-        if self.__config()["override"]["transform"]:
-            override_nodes_len += override(lambda item: not item[0] == "ImageScale" and not item[0] == "ImageScaleBy" and not item[0] == "ImageInvert")
+            if self.__config()["override"]["transform"]:
+                override_nodes_len += override(lambda item: not item[0] == "ImageScale" and not item[0] == "ImageScaleBy" and not item[0] == "ImageInvert")
 
-        if self.__config()["override"]["debug"]:
-            nodes.VAEDecodeTiled.CATEGORY = "latent"
-            nodes.VAEEncodeTiled.CATEGORY = "latent"
+            if self.__config()["override"]["debug"]:
+                if hasattr(nodes, "VAEDecodeTiled"):
+                    nodes.VAEDecodeTiled.CATEGORY = "latent"
+                if hasattr(nodes, "VAEEncodeTiled"):
+                    nodes.VAEEncodeTiled.CATEGORY = "latent"
 
-            override_nodes_len += override(lambda item: not item[1].CATEGORY.startswith("_for_testing"))
+                override_nodes_len += override(lambda item: not item[1].CATEGORY.startswith("_for_testing"))
+        except Exception as e:
+            self.__error(f"Error during node override: {e}")
 
         self.__log(str(override_nodes_len) + " nodes were overridden.")
 
@@ -336,14 +349,14 @@ class Loader:
             from .modules import ImageTransform
             modules.update(ImageTransform.NODE_CLASS_MAPPINGS)
 
-        modules_len = dict(
+        modules_len = len(dict(
             filter(
                 lambda item: item[1],
                 self.__config()["modules"].items()
             )
-        ).__len__()
+        ))
 
-        nodes_len = modules.__len__()
+        nodes_len = len(modules)
 
         self.__log(str(modules_len) + " modules were enabled.")
         self.__log(str(nodes_len) + " nodes were loaded.")

@@ -1,5 +1,7 @@
 rembg
 onnx
+Pillow
+opencv-python
 
 # Optional for auto updates
 gitpython

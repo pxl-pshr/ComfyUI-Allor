@@ -254,16 +254,16 @@ class ImageSegmentationCustomAdvanced:
             alpha_matting_background_threshold,
             alpha_matting_erode_size,
             post_process_mask,
-            mean_x,
-            mean_y,
-            mean_z,
-            std_x,
-            std_y,
-            std_z,
+            mean_r,
+            mean_g,
+            mean_b,
+            std_r,
+            std_g,
+            std_b,
             width,
             height
     ):
-        container = CustomSessionContainer(mean_x, mean_y, mean_z, std_x, std_y, std_z, width, height)
+        container = CustomSessionContainer(mean_r, mean_g, mean_b, std_r, std_g, std_b, width, height)
 
         class CustomSession(CustomAbstractSession):
             def __init__(self):
